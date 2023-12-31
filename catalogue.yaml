@@ -61,7 +61,7 @@
       msg : "product count : {{product_count}}"
 
   - name : load the catalogue
-    ansible.builtin.command : mongo --host mongodb.allmydevops.online </app/schema/catalogue.js
+    ansible.builtin.command : mongo --host mongodb.allmydevops.online < /app/schema/catalogue.js
 
 
   
