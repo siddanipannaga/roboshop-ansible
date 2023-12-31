@@ -15,4 +15,14 @@
   - name : create app directory
     ansible.builtin.file : 
       path : /app
-      state : directory  
+      state : directory
+
+  - name : downloading the application
+    ansible.builtin.get_url :
+      url : https://roboshop-builds.s3.amazonaws.com/catalogue.zip
+      dest : /tmp
+
+  - name : unzipping the applcation
+    ansible.builtin.unarchive :
+      src : /tmp/catalogue.zip
+      dest : /app
