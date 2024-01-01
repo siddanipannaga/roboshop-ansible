@@ -3,7 +3,7 @@
   become : yes
   tasks :
   - name : configure yum erlang repos
-    ansible.builtin.command : https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
+    ansible.builtin.shell : https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
 
   - name : configure yum rabbitmq repos
     ansible.builtin.command : https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
