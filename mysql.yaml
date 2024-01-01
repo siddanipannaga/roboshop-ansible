@@ -1,5 +1,6 @@
 - name :  install mysql component
   hosts : mysql
+  become : yes
   tasks : 
   - name : disable current version of mysql
     ansible.builtin.command : dnf module disable mysql -y
@@ -8,6 +9,7 @@
     ansible.builtin.copy :
       src : mysql.repo
       dest : /etc/yum.repos.d/mysql.repo
+
   - name : install mysql server
     ansible.builtin.package : 
       name : mysql-community-server
