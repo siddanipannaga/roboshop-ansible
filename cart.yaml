@@ -49,28 +49,6 @@
     ansible.builtin.systemd_service:
       daemon_reload: true
 
-  - name : copy mongodb repo
-    ansible.builtin.copy :
-      src : mongodb.repo
-      dest : /etc/yum.repos.d/mongodb.repo
-
-  - name : install mongodb
-    ansible.builtin.package :
-      name : mongodb-org-shell
-      state : present
-  
-  - name : get the cart count
-    ansible.builtin.command :  mongo --host mongodb.allmydevops.online --quiet --eval 'db = db.getSiblingDB("cart"); db.products.count()'
-    register : product_count  
-
-  # - name : print the count
-  #   ansible.builtin.debug :
-  #     msg : "product count : {{product_count}}"
-
-  - name : load the cart
-    ansible.builtin.command : mongo --host mongodb.allmydevops.online < /app/schema/cart.js
-    when : product_count.stdout == "0" # keep double quotes here for without skipping
-
   - name : start and enable cart
     ansible.builtin.service :
       name : cart
