@@ -59,7 +59,7 @@
       name : mongodb-org-shell
       state : present
   
-  - name : get the categories count
+  - name : get the users count
     ansible.builtin.command :  mongo --host mongodb.allmydevops.online --quiet --eval 'db = db.getSiblingDB("users"); db.users.count()'
     register : user_count  
 
